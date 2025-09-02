@@ -1,0 +1,21 @@
+#include <iostream>
+using namespace std;
+
+double divide(double a, double b) {
+    if (b == 0) {
+        cout << "Error: Cannot divide by zero." << endl;
+        return 0;
+    }
+    return a / b;
+}
+
+int main() {
+    double num1 = 6, num2 = 3;
+
+    double q1 = divide(num1, num2);
+    double q2 = divide(num2, num1);
+
+    cout << "Quotients: " << q1 << ", " << q2 << endl;
+
+    return 0;
+}
