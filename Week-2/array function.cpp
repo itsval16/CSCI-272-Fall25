@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//function to calculate avrrage
+//function to calculate average
 double average(int scores[], int size){
     int sum = 0;
     for (int i = 0; i < size; i++){
