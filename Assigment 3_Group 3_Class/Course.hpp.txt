@@ -1,0 +1,40 @@
+//  Course.hpp
+//  Assigment3_Group3
+//  Created by Valeria Pavia on 10/13/25.
+//  Role: Valeria - Handling the Course class
+
+#ifndef COURSE_H //check -> unique name
+#define COURSE_H //found -> unique name
+
+#include <iostream> // i/o libary
+#include <string> // text libary
+#include <unordered_map> // fast map: looks up grades faster
+
+using namespace std;
+
+// "blueprint" - subject a student takes = course name + credits + letter grade <- grade points.
+class Course {
+    
+private:
+    string courseName;      // holds name of the course
+    int creditHours;        // amount of credit worth
+    string letterGrade;     // stores grade as a letter ex(A)
+    double gradePoints;     // num = letter grade ex(A=4.0)
+
+void assignGradePoints(); //private help function = set grades without 'if' statements
+
+public:
+    Course(); //no info = 0 (constructor)
+    Course(string name, int credits, string letter); // given info = store ~ course,credit + letter grade (overload constructor)
+
+    // give access to get (encapsulation = private info)
+    string getCourseName() const;
+    int getCreditHours() const;
+    string getLetterGrade() const;
+    double getGradePoints() const;
+
+    //total points = (credits * gradePoints)
+    double getTotalPoints() const;
+};
+
+#endif //end

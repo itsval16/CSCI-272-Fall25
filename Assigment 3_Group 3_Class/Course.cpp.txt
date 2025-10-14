@@ -1,0 +1,71 @@
+//  Course.cpp
+//  Assigment3_Group3
+//  Created by Valeria Pavia on 10/13/25.
+//  Role: Valeria - Handling the Course class
+
+#include "Course.hpp"
+#include <cctype> // char type = (uppercase/lowercase)
+using namespace std;
+
+Course::Course() { // default constructor ~ no info passed
+    courseName = "";
+    creditHours = 0;
+    letterGrade = "F";
+    gradePoints = 0.0;
+}
+
+Course::Course(string name, int credits, string letter) { //overloaded constructor ~ info pased
+  //class’s variables
+    courseName = name;
+   creditHours = credits;
+   letterGrade = letter;
+    assignGradePoints(); // conversion from letter to grade points!
+}
+ //gets course name
+// const = don't change
+string Course::getCourseName() const {
+    return courseName;
+}
+//gets credit hours
+int Course::getCreditHours() const {
+    return creditHours;
+}
+//gets letter grade
+string Course::getLetterGrade() const {
+    return letterGrade;
+}
+//gets grade point -> num. version
+double Course::getGradePoints() const {
+    return gradePoints;
+}
+// total points (credits * grade points)
+double Course::getTotalPoints() const {
+    return creditHours * gradePoints;
+}
+
+// assignGradePoints: letter -> numbers
+void Course::assignGradePoints() {
+    // hash map = quick-access dictionary.
+    static const unordered_map < string, double> gradeMap = { //can't change amount must follow rules & connect
+        {"A", 4.0}, 
+        {"A-", 3.7},
+        {"B+", 3.3},
+        {"B Good", 3.0},
+        {"B-", 2.7},
+        {"C+", 2.3}, 
+        {"C Statisfactory", 2.0},
+        {"C-", 1.7},
+        {"D Passing", 1.0},
+        {"D- ", 0.7},
+        {"Faliure", 0.0}
+    };
+
+    // makes grade uppercase in case the user types “a” instead of “A”
+    for (auto &c : letterGrade) c = toupper(c);
+
+    // finds grade in map — if it’s not there -> default = 0.0
+    auto it = gradeMap.find(letterGrade);
+    gradePoints = (it != gradeMap.end()) ? it->second : 0.0;
+
+    }
+
